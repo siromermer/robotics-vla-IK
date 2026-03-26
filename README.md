@@ -28,5 +28,5 @@ Each task folder has its own `README.md` with **conda env setup** and **how to r
 ### Reports (Task 1)
 
 - Task 1 Part A report: [`task1/reports/task1-part-A.pdf`](task1/reports/task1-part-A.pdf)
-- Task 1 General report : [`task1/reports/task-1-report.pdf`](task1/reports/task-1-report.pdf)
+- Task 1 Part B report : [`task1/reports/task-1-report.pdf`](task1/reports/task-1-report.pdf)
 
