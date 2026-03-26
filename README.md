@@ -17,11 +17,11 @@ Each task folder has its own `README.md` with **conda env setup** and **how to r
 - **Task 1 (SmolVLA inference) video**: [`task1/results/task1_partb_seed1_prompted_500.mp4`](task1/results/task1_partb_seed1_prompted_500.mp4)
 - **Task 2 (Teleop 3-panel) video**: [`task2/results/teleop_hand_yolo_depth_robot.mp4`](task2/results/teleop_hand_yolo_depth_robot.mp4)
 
-#### Task 1 preview (GIF)
+#### Task 1 preview (GIF, slowed)
 
 ![Task 1 preview](task1/results/task1_partb_seed1_prompted_500.gif)
 
-#### Task 2 preview (GIF)
+#### Task 2 preview (GIF, slowed)
 
 ![Task 2 preview](task2/results/teleop_hand_yolo_depth_robot.gif)
 
