@@ -1,0 +1,9 @@
+mujoco>=3.2.6
+numpy>=1.24
+imageio[ffmpeg]>=2.34
+mediapipe>=0.10.33
+opencv-python>=4.8
+scipy>=1.10
+ultralytics>=8.0
+transformers>=4.40
+torch>=2.0

@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# OS / editor
+.DS_Store
+.vscode/
+
+# Local environments
+.venv/
+
+# Model weights (too large for regular GitHub; download from HF instead)
+**/model.safetensors
+
