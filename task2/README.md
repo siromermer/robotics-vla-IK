@@ -27,7 +27,7 @@ python -m task2.teleop_main \
 ### Output
 
 - **Main 3-panel MP4**: `results/teleop_hand_yolo_depth_robot.mp4`
-- **GIF preview**:
+- **GIF preview(slowed)**:
 
 ![Task 2 preview](results/teleop_hand_yolo_depth_robot.gif)
 
