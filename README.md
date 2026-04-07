@@ -3,7 +3,12 @@
 This repository contains two tasks:
 
 - **Task 1**: SmolVLA + LeRobot policy inference in MuJoCo (ALOHA insertion)
-- **Task 2**: Vision-based teleoperation (hand video → VX300s right arm) with from-scratch IK in MuJoCo
+- **Task 2**: Vision-based teleoperation (hand video → VX300s right arm) with from-scratch IK in MuJoCo.
+  A 7-step pipeline (MediaPipe hand tracking → YOLOv8n cup detection → DepthAnythingV2 depth →
+  trajectory mapping → damped least-squares IK → MuJoCo simulation → 3-panel MP4) that converts
+  raw RGB video of a hand holding a cup into joint-angle commands for the simulated robot arm,
+  with no pre-recorded robot demonstrations required.
+  See [`task2/README.md`](task2/README.md) for a full component-by-component explanation.
 
 ### Folder structure
 
