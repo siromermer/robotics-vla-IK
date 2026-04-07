@@ -24,7 +24,7 @@ Input video (RGB)
 [2] Cup detection (YOLOv8n)     → per-frame cup bbox + normalised centre UV
      │
      ▼
-[3] Depth estimation (DepthAnythingV2-Small)  → per-frame (H×W) relative depth map
+[3] Depth estimation (Depth-Anything-V2-Small)  → per-frame (H×W) relative depth map
      │
      ▼
 [4] Trajectory mapping          → (N,3) EE positions, (N,3,3) orientations, (N,) gripper
@@ -73,7 +73,7 @@ makes the mapping robust to minor camera shake or drift.
 
 #### Step 3 — Depth estimation (`depth_estimator.py`)
 
-Runs **Depth Anything V2 Small** (Hugging Face) to produce a per-frame
+Runs **Depth-Anything-V2-Small** (Hugging Face) to produce a per-frame
 `(H, W) float32` relative depth map normalised to [0, 1] (larger value =
 closer).  Two scalars are sampled per frame: depth at the wrist (`sample_depth_at`)
 and mean depth inside the cup bounding box (`sample_depth_bbox`).  These
@@ -131,7 +131,7 @@ joint origin and world-frame axis are recorded for Jacobian construction.
 For each revolute joint *i* with world axis `z_i` and origin `p_i`:
 
 ```
-J[:3, i] = z_i × (p_ee − p_i)   (linear velocity contribution)
+J[:3, i] = z_i × (p_ee − p_i)   (linear velocity contribution, p_ee = EE position in world frame)
 J[3:, i] = z_i                   (angular velocity contribution)
 ```
 
