@@ -7,10 +7,11 @@ Purpose
     camera moves slightly.
 
 Who calls this
-    ``CupDetector.detect_video`` from ``task2.teleop_main.main``.
+    ``CupDetector.detect_video`` from ``vision_teleoperation.teleop_main.main``.
 
 Weights
-    Default ``task2/assets/yolov8n.pt`` (Ultralytics). Class id 41 is COCO ``cup``.
+    Default ``vision_teleoperation/assets/yolov8n.pt`` (Ultralytics). Class id
+    41 is COCO ``cup``.
 
 Data shapes
     ``detect_video`` input: list of (H, W, 3) uint8 BGR, length N.
@@ -29,7 +30,7 @@ import torch
 from ultralytics import YOLO
 
 DEFAULT_WEIGHTS = Path(__file__).resolve().parent / "assets" / "yolov8n.pt"
-# Local weights are stored under task2/assets so the repo runs offline.
+# Local weights are stored under vision_teleoperation/assets so the repo runs offline.
 
 CUP_CLASS_ID = 41
 
@@ -64,7 +65,7 @@ class CupDetector:
             List aligned with ``bgr_frames``; each element is ``CupDetection``.
 
         Called by
-            ``task2.teleop_main.main``.
+            ``vision_teleoperation.teleop_main.main``.
         """
         N = len(bgr_frames)
         results_list: list[CupDetection] = []

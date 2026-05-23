@@ -2,13 +2,12 @@
 """Vision teleoperation: hand video to VX300s MuJoCo replay and MP4 export.
 
 Purpose
-    Task 2 pipeline: perception (MediaPipe hands, YOLO cup, DepthAnythingV2),
+    Perception pipeline: MediaPipe hands, YOLO cup, Depth Anything V2,
     map wrist/hand signals to end-effector pose + gripper, solve IK, step the
     sim, compose a 3-panel video (RGB+overlays | depth | robot).
 
 Who calls this
-    Run as ``python -m task2.teleop_main`` from the repo root with
-    ``PYTHONPATH`` set to the repo root, or via ``bash task2/run_teleop.sh``.
+    Run as ``python -m vision_teleoperation.teleop_main`` from the repo root.
 
 Main data shapes
     ``bgr_frames``: list of (H, W, 3) uint8 BGR frames.
@@ -47,10 +46,10 @@ import mujoco
 import numpy as np
 from scipy.ndimage import gaussian_filter1d
 
-from task2.cup_detector import CupDetector
-from task2.depth_estimator import DepthEstimator
-from task2.hand_tracker import HandTracker
-from task2.vx300s_ik import (
+from vision_teleoperation.cup_detector import CupDetector
+from vision_teleoperation.depth_estimator import DepthEstimator
+from vision_teleoperation.hand_tracker import HandTracker
+from vision_teleoperation.vx300s_ik import (
     HOME_QPOS,
     NUM_JOINTS,
     forward_kinematics,
@@ -466,13 +465,13 @@ def compose_side_by_side(
 
 
 def main() -> None:
-    """CLI: run the full pipeline and write an MP4 under ``task2/results/``."""
+    """CLI: run the full pipeline and write an MP4 under ``vision_teleoperation/results/``."""
     parser = argparse.ArgumentParser(
         description="Vision-based teleoperation: hand video -> VX300s robot sim"
     )
     parser.add_argument("--video", required=True, help="Input hand video path")
     parser.add_argument(
-        "--output", default="task2/results/teleop_hand_yolo_depth_robot.mp4",
+        "--output", default="vision_teleoperation/results/teleop_hand_yolo_depth_robot.mp4",
         help="Output MP4 path (3-panel: hand+YOLO | depth | sim)",
     )
     parser.add_argument("--fps", type=float, default=0,

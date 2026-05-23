@@ -10,6 +10,8 @@ __pycache__/
 # Local environments
 .venv/
 
+# Local notes and reports
+docs/
+
 # Model weights (too large for regular GitHub; download from HF instead)
 **/model.safetensors
-

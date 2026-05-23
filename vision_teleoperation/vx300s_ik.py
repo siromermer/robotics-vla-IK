@@ -8,7 +8,8 @@ Purpose
 
 Who calls this
     ``forward_kinematics`` and ``solve_ik`` / ``solve_ik_trajectory`` from
-    ``task2.teleop_main.build_trajectory`` (home pose) and ``main`` (full traj).
+    ``vision_teleoperation.teleop_main.build_trajectory`` (home pose) and
+    ``main`` (full traj).
 
 Joint vector ``q``
     Shape (6,) radians, order:
@@ -267,7 +268,7 @@ def solve_ik_trajectory(
         ``q_traj`` with shape (N, 6).
 
     Called by
-        ``task2.teleop_main.main``.
+        ``vision_teleoperation.teleop_main.main``.
     """
     N = len(positions)
     q_traj = np.zeros((N, NUM_JOINTS))

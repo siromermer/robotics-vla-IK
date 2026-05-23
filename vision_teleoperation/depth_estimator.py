@@ -4,10 +4,10 @@
 Purpose
     Per-frame dense depth-like maps (ordinal, not metric) for sampling depth at
     the wrist and inside the cup bounding box. Used together with hand size
-    in ``task2.teleop_main.build_trajectory``.
+    in ``vision_teleoperation.teleop_main.build_trajectory``.
 
 Who calls this
-    ``DepthEstimator.estimate_video`` from ``task2.teleop_main.main``.
+    ``DepthEstimator.estimate_video`` from ``vision_teleoperation.teleop_main.main``.
 
 Inputs and outputs
     ``estimate_video(bgr_frames)``:
@@ -57,7 +57,7 @@ class DepthEstimator:
         ``target_size`` is the max side length fed to the model for speed.
 
         Called by
-            ``task2.teleop_main.main``.
+            ``vision_teleoperation.teleop_main.main``.
         """
         N = len(bgr_frames)
         depth_maps: list[np.ndarray] = []

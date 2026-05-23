@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Google MediaPipe Hand Landmarker on a video file (Task 2 vision input).
+"""Google MediaPipe Hand Landmarker on a video file.
 
 Purpose
     Produce per-frame 2D and 3D hand landmarks plus simple derived signals
     (wrist image position, grip opening, apparent hand size) for teleoperation.
 
 Who calls this
-    ``HandTracker.process_video`` is invoked from ``task2.teleop_main.main``.
+    ``HandTracker.process_video`` is invoked from
+    ``vision_teleoperation.teleop_main.main``.
 
 Model file
     ``hand_landmarker.task`` next to this module (downloaded automatically
@@ -88,7 +89,7 @@ class HandTracker:
             ``fps``: frames per second from container (fallback 25).
 
         Called by
-            ``task2.teleop_main.main``.
+            ``vision_teleoperation.teleop_main.main``.
         """
         cap = cv2.VideoCapture(str(video_path))
         if not cap.isOpened():

@@ -28,13 +28,19 @@ from lerobot.envs.factory import make_env, make_env_pre_post_processors
 from lerobot.envs.utils import add_envs_task, preprocess_observation
 from lerobot.policies.factory import make_policy, make_pre_post_processors
 
+DEFAULT_MODEL_PATH = (
+    Path(__file__).resolve().parent
+    / "model"
+    / "smolvla_aloha_sim_insertion_human"
+)
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="SmolVLA ALOHA insertion inference")
     parser.add_argument(
         "--model-path",
         type=str,
-        default="model/smolvla_aloha_sim_insertion_human",
+        default=str(DEFAULT_MODEL_PATH),
         help="Local path or HF repo ID for the pretrained policy.",
     )
     parser.add_argument(

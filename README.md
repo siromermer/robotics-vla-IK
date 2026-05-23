@@ -1,32 +1,64 @@
-## Task 1 + Task 2 (Embodied AI)
+# Robotics VLA and Vision Teleoperation
 
-This repository contains two tasks:
+Robotics project combining vision-language-action policy inference, robot
+simulation, hand-object perception, and inverse kinematics.
 
-- **Task 1**: SmolVLA + LeRobot policy inference in MuJoCo (ALOHA insertion)
-- **Task 2**: Vision-based teleoperation (hand video → VX300s right arm) with from-scratch IK in MuJoCo
+## Components
 
-### Folder structure
+- `vla_policy_inference/`: SmolVLA inference in the LeRobot ALOHA insertion environment.
+- `vision_teleoperation/`: Hand-video-to-VX300s teleoperation pipeline with MediaPipe, YOLO, Depth Anything V2, MuJoCo, and damped least-squares IK.
 
-- **`task1/`**: code + reports + result video
-- **`task2/`**: code + assets + result video(s)
+## Results
 
-Each task folder has its own `README.md` with **conda env setup** and **how to run**.
+- Video: [`vla_policy_inference/results/smolvla_aloha_insertion_seed1_500.mp4`](vla_policy_inference/results/smolvla_aloha_insertion_seed1_500.mp4)
+- Video: [`vision_teleoperation/results/teleop_hand_yolo_depth_robot.mp4`](vision_teleoperation/results/teleop_hand_yolo_depth_robot.mp4)
 
-### Results
+#### SmolVLA ALOHA insertion preview (GIF, slowed)
 
-- **Task 1 (SmolVLA inference) video**: [`task1/results/task1_partb_seed1_prompted_500.mp4`](task1/results/task1_partb_seed1_prompted_500.mp4)
-- **Task 2 (Teleop 3-panel) video**: [`task2/results/teleop_hand_yolo_depth_robot.mp4`](task2/results/teleop_hand_yolo_depth_robot.mp4)
+![SmolVLA ALOHA insertion preview](vla_policy_inference/results/smolvla_aloha_insertion_seed1_500.gif)
 
-#### Task 1 preview (GIF, slowed)
+#### Vision teleoperation preview (GIF, slowed)
 
-![Task 1 preview](task1/results/task1_partb_seed1_prompted_500.gif)
+![Vision teleoperation preview](vision_teleoperation/results/teleop_hand_yolo_depth_robot.gif)
 
-#### Task 2 preview (GIF, slowed)
+## Quick Start
 
-![Task 2 preview](task2/results/teleop_hand_yolo_depth_robot.gif)
+Create separate environments for the two components because the VLA policy
+stack and the teleoperation stack have different dependency profiles.
 
-### Reports (Task 1)
+### SmolVLA Inference
 
-- Task 1 Part A report: [`task1/reports/task1-part-A.pdf`](task1/reports/task1-part-A.pdf)
-- Task 1 Part B report : [`task1/reports/task-1-report.pdf`](task1/reports/task-1-report.pdf)
+```bash
+conda create -n robotics-vla python=3.10 -y
+conda activate robotics-vla
+pip install lerobot huggingface_hub imageio[ffmpeg]
 
+python vla_policy_inference/run_smolvla_aloha_insertion.py \
+  --seed 1 \
+  --max-steps 500 \
+  --save-video vla_policy_inference/results/smolvla_aloha_insertion_seed1_500.mp4
+```
+
+### Vision Teleoperation
+
+```bash
+conda create -n robotics-teleop python=3.10 -y
+conda activate robotics-teleop
+pip install -r vision_teleoperation/requirements.txt
+
+python -m vision_teleoperation.teleop_main \
+  --video vision_teleoperation/test_video.mp4 \
+  --output vision_teleoperation/results/teleop_hand_yolo_depth_robot.mp4
+```
+
+## Implementation Notes
+
+- VLA policy: `c27e/smolvla_aloha_sim_insertion_human`.
+- Simulation backends: MuJoCo ALOHA and Trossen VX300s MJCF.
+- Teleoperation perception: MediaPipe hand landmarks, YOLOv8n cup detection, Depth Anything V2 relative depth.
+- IK method: from-scratch geometric Jacobian with damped least-squares updates.
+
+## Documentation
+
+- [SmolVLA inference](vla_policy_inference/README.md)
+- [Vision teleoperation](vision_teleoperation/README.md)
